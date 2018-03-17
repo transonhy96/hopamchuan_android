@@ -1,0 +1,112 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button menuToggle>
+              <ion-icon name="list"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-row>
+                <ion-searchbar
+                [(ngModel)]="searchSong"
+                (ionInput)="onInput($event)"
+                (ionCancel)="onCancel($event)">
+              </ion-searchbar>
+        </ion-row>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-menu [content]="sidemenu" (ionOpen)="OpenMenu()" (ionDrag)="OpenMenu()">
+    <!-- <ion-header no-border>
+        <ion-toolbar>
+            <ion-title></ion-title>
+        </ion-toolbar>
+    </ion-header> -->
+    <ion-content padding class="menu-content">
+       
+               <ion-grid>
+                   <ion-row *ngIf="Users; else tem">
+                    <ion-item no-lines>
+                        <ion-avatar item-start>
+                          <img [src]="Users.additionalUserInfo.profile.picture.data.url" alt="Username">
+                        </ion-avatar>
+                        {{Users.additionalUserInfo.profile.name}}
+                      </ion-item>
+                   </ion-row>
+                   <ng-template #tem>
+                    <ion-row>
+                        <ion-item no-lines>
+                            <ion-avatar item-start>
+                              <ion-icon class="hello" name="logo-octocat"></ion-icon>
+                            </ion-avatar>
+                            Anonymous
+                          </ion-item>
+                       
+                       </ion-row>
+                   </ng-template>
+                   
+
+                   <ion-row>
+                        <button ion-item  no-lines (click)="onload(OtherPage)">
+                            <button ion-button round color="hello">
+                                    <ion-icon name="search"></ion-icon>
+                            </button>
+                            <button ion-button clear > Search</button>
+                        </button>
+                   </ion-row>
+                   <ion-row>
+                        <button ion-item no-lines (click)="onload(OtherPage)">
+                                <button ion-button round color="hi">
+                                        <ion-icon name="logo-octocat"></ion-icon>
+                                </button>
+                                <button ion-button clear > Profile</button>
+                        </button>
+                   </ion-row>
+                   <ion-row>
+                        <button ion-item no-lines (click)="onload(OtherPage)">
+                                <button ion-button round color="greyy">
+                                        <ion-icon name="cog"></ion-icon>
+                                </button>
+                                <button ion-button clear > Settings</button>
+                        </button>
+                   </ion-row>
+                   <ion-row>
+                        <button ion-item  no-lines (click)="logout()" >
+                                <button ion-button round color="loot"> 
+                                    <ion-icon name="log-in" ></ion-icon>
+                                </button> 
+                                <button ion-button clear > Log out</button>
+                          
+                       </button>    
+                   </ion-row>
+               </ion-grid>
+     
+    </ion-content>
+    </ion-menu>
+<ion-content padding #sidemenu class="content">
+        
+    <ion-grid>
+        
+        <ion-row>
+                <ion-refresher (ionRefresh)="doRefresh($event)">
+                        <ion-refresher-content></ion-refresher-content>
+                      </ion-refresher>
+        </ion-row>
+    
+    <ion-list>
+        <button ion-item *ngFor="let song of topsongs ;let  i = index;"(click)="goDetail(song)">
+            
+          <ion-thumbnail item-start>
+            <img [src]="song.singer[0].avatar" class="avatar">
+          </ion-thumbnail>
+          <p color="danger" > {{i+1}} </p>
+          <h2 color="twitter">{{song.name}}</h2>
+          <p *ngFor="let singer of song.singer" color="danger">{{singer.name}}</p>
+          <p>Số lượt xem: {{song.search_count}}</p>
+        </button>
+      </ion-list>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,50 @@
+
+<ion-header no-shadow no-border>
+    <ion-navbar >
+        <ion-title></ion-title>
+    </ion-navbar>
+ 
+    </ion-header>
+<ion-content padding [attr.noScroll] >
+  <div class="wrapper">
+  <ion-grid padding>
+     <ion-row padding>
+          <button ion-button clear color="hi" > <ion-icon name="ionic"></ion-icon></button>
+          <button ion-button clear >Hopamchuan</button>
+        
+     </ion-row>
+     <ion-row padding-right>
+        
+          <ion-item >
+              <ion-input (ionBlur)="validate()" (ionFocus)="show()" placeholder="Email" type="email" [(ngModel)]="email" required></ion-input>    
+          </ion-item>
+          <ion-item >
+              <ion-input (ionBlur)="validate()" (ionFocus)="show()"  placeholder="Password" type="password" [(ngModel)]="password" required></ion-input>
+          </ion-item>
+          
+      </ion-row>
+      <ion-row padding>
+        
+           <button ion-button block color="hello" (click)="LogInWithEmail()" (click)="validate()">
+             Log in
+            </button> 
+      </ion-row>
+      <ion-row padding-horizontal >
+          <button ion-button block  color="hello" (click)="signInWithFacebook()">
+              Log in with Facebook
+             </button>      
+      </ion-row>
+      <ion-row class="bot"  >
+        
+         <ion-col>
+                Dont have an account?
+         </ion-col>
+        <ion-col>
+                <button (click)="tosignupPage()" ion-button clear color="hi">
+                        Create one
+                  </button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  </div>
+</ion-content>

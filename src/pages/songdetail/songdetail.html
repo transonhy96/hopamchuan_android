@@ -1,0 +1,46 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title padding>{{song.name}}</ion-title>
+    <ion-buttons end>
+      <button clear icon-only ion-button (click)="favorite()">
+          <ion-icon name="heart" color="danger" ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="content">
+    <ion-grid class="top">
+        <ion-row padding> 
+      Bài hát: {{song.name}}
+        </ion-row>
+      <ion-row padding> 
+       Tông : {{song.main_tone}}
+      </ion-row>
+      <ion-row> 
+         <button ion-button clear no-lines>
+           Singer: {{song.singer[0].name}}
+         </button>
+         </ion-row>
+         <ion-row> 
+          <button ion-button  no-lines color="hi">
+            Nghe nhạc
+          </button>
+          </ion-row>
+    </ion-grid>
+    <ion-grid class="mid" *ngFor="let ly of song.chord_lyric" padding>
+       
+            <ion-row>
+                    {{ly.sentences}}
+            </ion-row>  
+            <ion-row>
+                <button ion-button clear [color]="randColor" (click)="showChord(ly.chord)">
+                    {{ly.chord}}
+                </button>
+            </ion-row>
+      </ion-grid>
+</ion-content>
